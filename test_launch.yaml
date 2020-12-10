@@ -1,0 +1,50 @@
+name: test13
+servers:
+- name: serverName
+  host: ${testVar}
+includes:
+- //marche_pas
+variables:
+- constant:
+    name: testVar
+    value: mmmmmmm
+- file:
+    name: products_file
+    path: data/list_of_products.csv
+    is_first_line_column_names: true
+user_paths:
+- name: MyUserPath
+  actions:
+    steps:
+    - transaction:
+        name: MyTransaction
+        steps:
+        - request:
+            url: https://petstore.swagger.io/v2/pet/3543991167
+            method: DELETE
+        - request:
+            url: https://preprod-neoload.saas.neotys.com/trend
+        - delay: 2s
+populations:
+- name: MyPopulation
+  user_paths:
+  - name: MyUserPath
+    distribution: 100%
+- name: MyPopulation2
+  user_paths:
+  - name: MyUserPath
+    distribution: 100%
+scenarios:
+- name: MyScenario
+  populations:
+  - name: MyPopulation
+    constant_load:
+      users: 5
+      duration: 30m
+  - name: MyPopulation2
+    rampup_load:
+      min_users: 1
+      max_users: 40
+      increment_users: 1
+      increment_every: 10
+      duration: 20m

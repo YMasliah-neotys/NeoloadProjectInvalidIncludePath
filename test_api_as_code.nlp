@@ -1,0 +1,13 @@
+# Project description file
+
+project.name=test_api_as_code
+project.version=6.5
+project.original.version=6.5
+product.name=NeoLoad
+product.original.name=NeoLoad
+product.version=6.9.0
+product.original.version=6.9.0
+project.id=5773917a-88a4-42de-a391-d1e0bc0cbbd1
+project.config.path=config.zip
+project.config.storage=ZIP
+team.server.enabled=false
